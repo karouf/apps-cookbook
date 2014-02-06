@@ -2,10 +2,6 @@
 driver:
   name: vagrant
 
-driver_config:
-  http_proxy: http://10.1.6.29:5865
-  https_proxy: http://10.1.6.29:5865
-
 provisioner:
   name: chef_solo
 
