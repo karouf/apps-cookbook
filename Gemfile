@@ -7,6 +7,7 @@ group :development do
   gem 'kitchen-vagrant'
   gem 'guard'
   gem 'guard-kitchen'
-  gem 'foodcritic'
-  gem 'guard-foodcritic'
+  gem 'foodcritic', '>= 3.0'
+  gem 'guard-foodcritic', '>= 1.0'
+  gem 'chefspec', '>= 3.1'
 end
