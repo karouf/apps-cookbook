@@ -1,5 +1,5 @@
 name             'apps'
-maintainer       'YOUR_NAME'
+maintainer       'Renaud Martinet'
 maintainer_email 'karouf@gmail.com'
 license          'All rights reserved'
 description      'Installs/Configures apps'
