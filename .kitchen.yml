@@ -14,5 +14,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[apps::default]
+      - recipe[apps::pictesfootball]
     attributes:
