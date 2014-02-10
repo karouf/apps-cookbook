@@ -6,10 +6,10 @@ provisioner:
   name: chef_solo
 
 platforms:
-  - name: lucid32
+  - name: ubuntu-raring32
     driver:
-      box: lucid32
-      box_url: http://files.vagrantup.com/lucid32.box
+      box: ubuntu-raring32
+      box_url: http://cloud-images.ubuntu.com/vagrant/raring/current/raring-server-cloudimg-i386-vagrant-disk1.box
 
 suites:
   - name: default
