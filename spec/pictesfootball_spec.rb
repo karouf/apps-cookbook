@@ -18,4 +18,8 @@ describe 'apps::pictesfootball' do
   it 'starts Nginx service' do
     expect(chef_run).to start_service('nginx')
   end
+
+  it 'installs PHP' do
+    expect(chef_run).to install_package('php5')
+  end
 end

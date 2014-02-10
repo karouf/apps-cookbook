@@ -14,3 +14,5 @@ package 'nginx'
 service 'nginx' do
   action [:enable, :start]
 end
+
+package 'php5'
