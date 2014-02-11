@@ -22,4 +22,8 @@ describe 'apps::pictesfootball' do
   it 'installs PHP' do
     expect(chef_run).to install_package('php5')
   end
+
+  it 'includes the git recipe' do
+    expect(chef_run).to include_recipe('git')
+  end
 end
