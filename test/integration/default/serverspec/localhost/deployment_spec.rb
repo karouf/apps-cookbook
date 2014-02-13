@@ -3,3 +3,10 @@ require 'spec_helper'
 describe user('deploy') do
   it { should exist }
 end
+
+describe file('/var/www/pictesfootball.com') do
+  it { should be_a_directory }
+  it { should be_owned_by 'deploy' }
+  it { should be_grouped_into 'www-data' }
+  it { should be_mode 770 }
+end

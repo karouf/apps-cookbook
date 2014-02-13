@@ -30,4 +30,8 @@ describe 'apps::pictesfootball' do
   it 'creates the deploy user' do
     expect(chef_run).to create_user('deploy')
   end
+
+  it 'creates the directory to deploy to' do
+    expect(chef_run).to create_directory('/var/www/pictesfootball.com').with(owner: 'deploy', group: 'www-data', mode: '770')
+  end
 end

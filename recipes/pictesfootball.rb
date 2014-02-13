@@ -20,3 +20,9 @@ package 'php5'
 include_recipe 'git'
 
 user 'deploy'
+
+directory '/var/www/pictesfootball.com' do
+  owner 'deploy'
+  group 'www-data'
+  mode  '770'
+end
