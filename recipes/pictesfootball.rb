@@ -26,3 +26,9 @@ directory '/var/www/pictesfootball.com' do
   group 'www-data'
   mode  '770'
 end
+
+package 'php5-fpm'
+
+service 'php5-fpm' do
+  action [:enable, :start]
+end

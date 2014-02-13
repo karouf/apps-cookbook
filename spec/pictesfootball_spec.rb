@@ -23,6 +23,18 @@ describe 'apps::pictesfootball' do
     expect(chef_run).to install_package('php5')
   end
 
+  it 'installs PHP-FPM' do
+    expect(chef_run).to install_package('php5-fpm')
+  end
+
+  it 'enables PHP-FPM service at boot' do
+    expect(chef_run).to enable_service('php5-fpm')
+  end
+
+  it 'starts PHP-FPM service' do
+    expect(chef_run).to start_service('php5-fpm')
+  end
+
   it 'includes the git recipe' do
     expect(chef_run).to include_recipe('git')
   end
