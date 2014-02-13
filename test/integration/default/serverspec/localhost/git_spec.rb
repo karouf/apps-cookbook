@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe package('git-core') do
+describe package('git') do
     it { should be_installed }
 end
