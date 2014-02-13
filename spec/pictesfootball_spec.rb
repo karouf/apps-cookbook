@@ -26,4 +26,8 @@ describe 'apps::pictesfootball' do
   it 'includes the git recipe' do
     expect(chef_run).to include_recipe('git')
   end
+
+  it 'creates the deploy user' do
+    expect(chef_run).to create_user('deploy')
+  end
 end

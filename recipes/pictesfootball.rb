@@ -18,3 +18,5 @@ end
 package 'php5'
 
 include_recipe 'git'
+
+user 'deploy'
