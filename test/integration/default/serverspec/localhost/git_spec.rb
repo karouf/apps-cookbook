@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe package('git') do
-    it { should be_installed }
+describe command('git --version') do
+    it { should return_exit_status 0 }
 end
