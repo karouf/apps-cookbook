@@ -35,6 +35,11 @@ describe 'apps::pictesfootball' do
     expect(chef_run).to start_service('php5-fpm')
   end
 
+  it 'creates PHP-FPM config for pictesfootball.com' do
+    expect(chef_run).to create_cookbook_file('/etc/php5/fpm/pool.d/pictesfootball.com.conf')
+    expect(chef_run.cookbook_file('/etc/php5/fpm/pool.d/pictesfootball.com.conf')).to notify('service[php5-fpm]').to(:restart)
+  end
+
   it 'includes the git recipe' do
     expect(chef_run).to include_recipe('git')
   end

@@ -32,3 +32,8 @@ package 'php5-fpm'
 service 'php5-fpm' do
   action [:enable, :start]
 end
+
+cookbook_file '/etc/php5/fpm/pool.d/pictesfootball.com.conf' do
+  source 'php-fpm.conf'
+  notifies :restart, 'service[php5-fpm]'
+end
