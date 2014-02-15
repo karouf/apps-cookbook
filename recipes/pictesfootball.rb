@@ -37,3 +37,12 @@ cookbook_file '/etc/php5/fpm/pool.d/pictesfootball.com.conf' do
   source 'php-fpm.conf'
   notifies :restart, 'service[php5-fpm]'
 end
+
+cookbook_file '/etc/nginx/sites-available/pictesfootball.com' do
+  source 'nginx-vhost.conf'
+end
+
+link '/etc/nginx/sites-enabled/pictesfootball.com' do
+  to '/etc/nginx/sites-available/pictesfootball.com'
+  notifies :restart, 'service[nginx]'
+end

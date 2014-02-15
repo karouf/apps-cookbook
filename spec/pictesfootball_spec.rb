@@ -19,6 +19,12 @@ describe 'apps::pictesfootball' do
     expect(chef_run).to start_service('nginx')
   end
 
+  it 'configures a vhost for pictesfootball.com' do
+    expect(chef_run).to create_cookbook_file('/etc/nginx/sites-available/pictesfootball.com')
+    expect(chef_run).to create_link('/etc/nginx/sites-enabled/pictesfootball.com').with(to: '/etc/nginx/sites-available/pictesfootball.com')
+    expect(chef_run.link('/etc/nginx/sites-enabled/pictesfootball.com')).to notify('service[nginx]').to(:restart)
+  end
+
   it 'installs PHP' do
     expect(chef_run).to install_package('php5')
   end
