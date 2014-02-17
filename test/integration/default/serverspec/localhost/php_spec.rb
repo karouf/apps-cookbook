@@ -19,10 +19,10 @@ describe file('/etc/php5/fpm/pool.d/pictesfootball.com.conf') do
   it { should be_grouped_into 'root' }
   it { should be_mode 644 }
   its(:content) { should match /\[pictesfootball.com\]/ }
-  its(:content) { should match /listen = \/var\/run\/php5-fpm-\$pool.sock/ }
+  its(:content) { should match /listen = \/var\/run\/php-fpm-\$pool.sock/ }
 end
 
-describe file('/var/run/php5-fpm-pictesfootball.com.sock') do
+describe file('/var/run/php-fpm-pictesfootball.com.sock') do
   it { should be_a_socket }
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
