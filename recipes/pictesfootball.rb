@@ -17,6 +17,10 @@ end
 
 package 'php5'
 
+package 'php5-curl' do
+  notifies :restart, 'service[php5-fpm]'
+end
+
 include_recipe 'git'
 
 user 'deploy'

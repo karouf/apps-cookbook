@@ -29,6 +29,11 @@ describe 'apps::pictesfootball' do
     expect(chef_run).to install_package('php5')
   end
 
+  it 'installs the Curl extension for PHP' do
+    expect(chef_run).to install_package('php5-curl')
+    expect(chef_run.package('php5-curl')).to notify('service[php5-fpm]').to(:restart)
+  end
+
   it 'installs PHP-FPM' do
     expect(chef_run).to install_package('php5-fpm')
   end

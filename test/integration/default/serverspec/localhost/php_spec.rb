@@ -4,6 +4,10 @@ describe package('php5') do
     it { should be_installed }
 end
 
+describe package('php5-curl') do
+    it { should be_installed }
+end
+
 describe package('php5-fpm') do
     it { should be_installed }
 end
