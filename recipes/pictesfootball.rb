@@ -33,6 +33,18 @@ directory '/var/www/pictesfootball.com' do
   mode  '770'
 end
 
+directory '/var/log/pictesfootball.com' do
+  owner 'deploy'
+  group 'www-data'
+  mode  '775'
+end
+
+directory '/var/cache/pictesfootball.com' do
+  owner 'deploy'
+  group 'www-data'
+  mode  '775'
+end
+
 package 'php5-fpm'
 
 service 'php5-fpm' do

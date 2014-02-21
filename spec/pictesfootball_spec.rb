@@ -62,4 +62,12 @@ describe 'apps::pictesfootball' do
   it 'creates the directory to deploy to' do
     expect(chef_run).to create_directory('/var/www/pictesfootball.com').with(owner: 'deploy', group: 'www-data', mode: '770')
   end
+
+  it 'creates the app log directory' do
+    expect(chef_run).to create_directory('/var/log/pictesfootball.com').with(owner: 'deploy', group: 'www-data', mode: '775')
+  end
+
+  it 'creates the app cache directory' do
+    expect(chef_run).to create_directory('/var/cache/pictesfootball.com').with(owner: 'deploy', group: 'www-data', mode: '775')
+  end
 end
