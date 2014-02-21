@@ -23,7 +23,9 @@ end
 
 include_recipe 'git'
 
-user 'deploy'
+user 'deploy' do
+  group 'www-data'
+end
 
 directory '/var/www/pictesfootball.com' do
   owner 'deploy'

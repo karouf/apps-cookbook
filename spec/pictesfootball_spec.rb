@@ -56,7 +56,7 @@ describe 'apps::pictesfootball' do
   end
 
   it 'creates the deploy user' do
-    expect(chef_run).to create_user('deploy')
+    expect(chef_run).to create_user('deploy').with(group: 'www-data')
   end
 
   it 'creates the directory to deploy to' do

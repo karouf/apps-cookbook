@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe user('deploy') do
   it { should exist }
+  it { should belong_to_group 'www-data' }
 end
 
 describe file('/var/www/pictesfootball.com') do
