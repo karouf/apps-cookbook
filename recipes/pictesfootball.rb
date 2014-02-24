@@ -27,19 +27,19 @@ user 'deploy' do
   group 'www-data'
 end
 
-directory '/var/www/pictesfootball.com' do
+directory "/var/www/#{node['pictesfootball']['domain']}" do
   owner 'deploy'
   group 'www-data'
   mode  '770'
 end
 
-directory '/var/log/pictesfootball.com' do
+directory "/var/log/#{node['pictesfootball']['domain']}" do
   owner 'deploy'
   group 'www-data'
   mode  '775'
 end
 
-directory '/var/cache/pictesfootball.com' do
+directory "/var/cache/#{node['pictesfootball']['domain']}" do
   owner 'deploy'
   group 'www-data'
   mode  '775'
@@ -51,16 +51,16 @@ service 'php5-fpm' do
   action [:enable, :start]
 end
 
-cookbook_file '/etc/php5/fpm/pool.d/pictesfootball.com.conf' do
+template "/etc/php5/fpm/pool.d/#{node['pictesfootball']['domain']}.conf" do
   source 'php-fpm.conf'
   notifies :restart, 'service[php5-fpm]'
 end
 
-cookbook_file '/etc/nginx/sites-available/pictesfootball.com' do
+template "/etc/nginx/sites-available/#{node['pictesfootball']['domain']}" do
   source 'nginx-vhost.conf'
 end
 
-link '/etc/nginx/sites-enabled/pictesfootball.com' do
-  to '/etc/nginx/sites-available/pictesfootball.com'
+link "/etc/nginx/sites-enabled/#{node['pictesfootball']['domain']}" do
+  to "/etc/nginx/sites-available/#{node['pictesfootball']['domain']}"
   notifies :restart, 'service[nginx]'
 end

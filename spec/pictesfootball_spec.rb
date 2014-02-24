@@ -20,7 +20,7 @@ describe 'apps::pictesfootball' do
   end
 
   it 'configures a vhost for pictesfootball.com' do
-    expect(chef_run).to create_cookbook_file('/etc/nginx/sites-available/pictesfootball.com')
+    expect(chef_run).to create_template('/etc/nginx/sites-available/pictesfootball.com')
     expect(chef_run).to create_link('/etc/nginx/sites-enabled/pictesfootball.com').with(to: '/etc/nginx/sites-available/pictesfootball.com')
     expect(chef_run.link('/etc/nginx/sites-enabled/pictesfootball.com')).to notify('service[nginx]').to(:restart)
   end
@@ -47,8 +47,8 @@ describe 'apps::pictesfootball' do
   end
 
   it 'creates PHP-FPM config for pictesfootball.com' do
-    expect(chef_run).to create_cookbook_file('/etc/php5/fpm/pool.d/pictesfootball.com.conf')
-    expect(chef_run.cookbook_file('/etc/php5/fpm/pool.d/pictesfootball.com.conf')).to notify('service[php5-fpm]').to(:restart)
+    expect(chef_run).to create_template('/etc/php5/fpm/pool.d/pictesfootball.com.conf')
+    expect(chef_run.template('/etc/php5/fpm/pool.d/pictesfootball.com.conf')).to notify('service[php5-fpm]').to(:restart)
   end
 
   it 'includes the git recipe' do
