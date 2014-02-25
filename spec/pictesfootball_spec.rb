@@ -55,19 +55,31 @@ describe 'apps::pictesfootball' do
     expect(chef_run).to include_recipe('git')
   end
 
-  it 'creates the deploy user' do
-    expect(chef_run).to create_user('deploy').with(group: 'www-data')
+  it 'creates the deploy user from node attribute' do
+    chef_run.node.set['pictesfootball']['deploy']['user'] = 'test'
+    chef_run.converge(described_recipe)
+
+    expect(chef_run).to create_user('test').with(group: 'www-data')
   end
 
   it 'creates the directory to deploy to' do
-    expect(chef_run).to create_directory('/var/www/pictesfootball.com').with(owner: 'deploy', group: 'www-data', mode: '770')
+    chef_run.node.set['pictesfootball']['deploy']['user'] = 'test'
+    chef_run.converge(described_recipe)
+
+    expect(chef_run).to create_directory('/var/www/pictesfootball.com').with(owner: 'test', group: 'www-data', mode: '770')
   end
 
   it 'creates the app log directory' do
-    expect(chef_run).to create_directory('/var/log/pictesfootball.com').with(owner: 'deploy', group: 'www-data', mode: '775')
+    chef_run.node.set['pictesfootball']['deploy']['user'] = 'test'
+    chef_run.converge(described_recipe)
+
+    expect(chef_run).to create_directory('/var/log/pictesfootball.com').with(owner: 'test', group: 'www-data', mode: '775')
   end
 
   it 'creates the app cache directory' do
-    expect(chef_run).to create_directory('/var/cache/pictesfootball.com').with(owner: 'deploy', group: 'www-data', mode: '775')
+    chef_run.node.set['pictesfootball']['deploy']['user'] = 'test'
+    chef_run.converge(described_recipe)
+
+    expect(chef_run).to create_directory('/var/cache/pictesfootball.com').with(owner: 'test', group: 'www-data', mode: '775')
   end
 end

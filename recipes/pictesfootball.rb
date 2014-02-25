@@ -23,24 +23,24 @@ end
 
 include_recipe 'git'
 
-user 'deploy' do
+user node['pictesfootball']['deploy']['user'] do
   group 'www-data'
 end
 
 directory "/var/www/#{node['pictesfootball']['domain']}" do
-  owner 'deploy'
+  owner node['pictesfootball']['deploy']['user']
   group 'www-data'
   mode  '770'
 end
 
 directory "/var/log/#{node['pictesfootball']['domain']}" do
-  owner 'deploy'
+  owner node['pictesfootball']['deploy']['user']
   group 'www-data'
   mode  '775'
 end
 
 directory "/var/cache/#{node['pictesfootball']['domain']}" do
-  owner 'deploy'
+  owner node['pictesfootball']['deploy']['user']
   group 'www-data'
   mode  '775'
 end
