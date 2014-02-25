@@ -7,6 +7,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
+node.set['pictesfootball']['deploy']['group'] = node['pictesfootball']['web']['group']
+node.set['nginx']['user'] = node['pictesfootball']['web']['user']
+node.set['nginx']['group'] = node['pictesfootball']['web']['group']
+
 include_recipe 'apt'
 
 package 'nginx'
@@ -24,24 +28,24 @@ end
 include_recipe 'git'
 
 user node['pictesfootball']['deploy']['user'] do
-  group 'www-data'
+  group node['pictesfootball']['deploy']['group']
 end
 
 directory "/var/www/#{node['pictesfootball']['domain']}" do
   owner node['pictesfootball']['deploy']['user']
-  group 'www-data'
+  group node['pictesfootball']['deploy']['group']
   mode  '770'
 end
 
 directory "/var/log/#{node['pictesfootball']['domain']}" do
   owner node['pictesfootball']['deploy']['user']
-  group 'www-data'
+  group node['pictesfootball']['deploy']['group']
   mode  '775'
 end
 
 directory "/var/cache/#{node['pictesfootball']['domain']}" do
   owner node['pictesfootball']['deploy']['user']
-  group 'www-data'
+  group node['pictesfootball']['deploy']['group']
   mode  '775'
 end
 

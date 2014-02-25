@@ -57,29 +57,37 @@ describe 'apps::pictesfootball' do
 
   it 'creates the deploy user from node attribute' do
     chef_run.node.set['pictesfootball']['deploy']['user'] = 'test'
+    chef_run.node.set['pictesfootball']['web']['user'] = 'www-test'
+    chef_run.node.set['pictesfootball']['web']['group'] = 'www-test'
     chef_run.converge(described_recipe)
 
-    expect(chef_run).to create_user('test').with(group: 'www-data')
+    expect(chef_run).to create_user('test').with(group: 'www-test')
   end
 
   it 'creates the directory to deploy to' do
     chef_run.node.set['pictesfootball']['deploy']['user'] = 'test'
+    chef_run.node.set['pictesfootball']['web']['user'] = 'www-test'
+    chef_run.node.set['pictesfootball']['web']['group'] = 'www-test'
     chef_run.converge(described_recipe)
 
-    expect(chef_run).to create_directory('/var/www/pictesfootball.com').with(owner: 'test', group: 'www-data', mode: '770')
+    expect(chef_run).to create_directory('/var/www/pictesfootball.com').with(owner: 'test', group: 'www-test', mode: '770')
   end
 
   it 'creates the app log directory' do
     chef_run.node.set['pictesfootball']['deploy']['user'] = 'test'
+    chef_run.node.set['pictesfootball']['web']['user'] = 'www-test'
+    chef_run.node.set['pictesfootball']['web']['group'] = 'www-test'
     chef_run.converge(described_recipe)
 
-    expect(chef_run).to create_directory('/var/log/pictesfootball.com').with(owner: 'test', group: 'www-data', mode: '775')
+    expect(chef_run).to create_directory('/var/log/pictesfootball.com').with(owner: 'test', group: 'www-test', mode: '775')
   end
 
   it 'creates the app cache directory' do
     chef_run.node.set['pictesfootball']['deploy']['user'] = 'test'
+    chef_run.node.set['pictesfootball']['web']['user'] = 'www-test'
+    chef_run.node.set['pictesfootball']['web']['group'] = 'www-test'
     chef_run.converge(described_recipe)
 
-    expect(chef_run).to create_directory('/var/cache/pictesfootball.com').with(owner: 'test', group: 'www-data', mode: '775')
+    expect(chef_run).to create_directory('/var/cache/pictesfootball.com').with(owner: 'test', group: 'www-test', mode: '775')
   end
 end
