@@ -27,3 +27,7 @@ describe file('/etc/nginx/sites-enabled/pictesfootball.com') do
   it { should be_grouped_into 'root' }
   it { should be_mode 777 }
 end
+
+describe file('/etc/nginx/sites-enabled/default') do
+  it { should_not be_linked_to '/etc/nginx/sites-available/default' }
+end

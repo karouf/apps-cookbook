@@ -60,6 +60,11 @@ template "/etc/php5/fpm/pool.d/#{node['pictesfootball']['domain']}.conf" do
   notifies :restart, 'service[php5-fpm]'
 end
 
+link '/etc/nginx/sites-enabled/default' do
+  action :delete
+  notifies :restart, 'service[nginx]'
+end
+
 template "/etc/nginx/sites-available/#{node['pictesfootball']['domain']}" do
   source 'nginx-vhost.conf'
 end

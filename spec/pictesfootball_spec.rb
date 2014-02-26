@@ -19,6 +19,11 @@ describe 'apps::pictesfootball' do
     expect(chef_run).to start_service('nginx')
   end
 
+  it 'removes the default Nginx vhost' do
+    expect(chef_run).to delete_link('/etc/nginx/sites-enabled/default')
+    expect(chef_run.link('/etc/nginx/sites-enabled/default')).to notify('service[nginx]').to(:restart)
+  end
+
   it 'configures a vhost for pictesfootball.com' do
     expect(chef_run).to create_template('/etc/nginx/sites-available/pictesfootball.com')
     expect(chef_run).to create_link('/etc/nginx/sites-enabled/pictesfootball.com').with(to: '/etc/nginx/sites-available/pictesfootball.com')
